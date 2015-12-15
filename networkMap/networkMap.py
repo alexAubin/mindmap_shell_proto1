@@ -1,33 +1,27 @@
 import networkx as nx
 
-
-
 class NetworkLayout(object):
     """ List of positions for every node in a graph
     every element keeps a reference to a node of the baseGraph
-    + functions to compute position list from layout model
+    + functions to compute position list from a layout model
     """
     def __init__(self, baseGraph, firstLayoutType="stack" ):
         self.baseGraph = baseGraph
-        self.nodesPositions = self.computePositions(firstLayoutType)
+        self.nodesPositions = [ (node, [0, 0]) for node in self.baseGraph.nodes_iter(data=False) ]
 
-    def computePositions(self, layoutType = "stack"):
-        positionsList = []
-        if layoutType == "stack":
-            positionsList = [ (node, (0, 0)) for node in self.baseGraph.nodes_iter(data=False) ]
-            print(positionsList)
-        if layoutType == "stack2":
-            posx = 50
-            positionsList = []
-            for node in self.baseGraph.nodes_iter(data=False):
-                positionsList.append((node,(posx,0)))
-                posx += 50
-            print(positionsList)
-        return positionsList
+    def basicLine(self):
+        posx = 0
+        for node in self.nodesPositions:
+            node[1][0] = posx
+            posx += 200
 
     def explicitPositionning(self, positionsList):
-        '''self.nodesPositions = [ (node, position) for  ]'''
-        pass
+        i = 0
+        for node in self.nodesPositions:
+            if i < positionsList.__len__():
+                node[1][0] = positionsList[i][0]
+                node[1][1] = positionsList[i][1]
+            i += 1
 
 class NetworkMap(object):
     """Stores a graph with it's layouts in order to make it displayable"""
@@ -37,5 +31,6 @@ class NetworkMap(object):
         else:
             self.graph = graph
         self.layouts = [ NetworkLayout(self.graph, defaultLayoutType) ]
+        self.layouts[0].explicitPositionning([[50, 50], [150, 150], [250, 250], [350, 350]])
 
 

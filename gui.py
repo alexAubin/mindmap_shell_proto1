@@ -17,17 +17,6 @@ class DrawGraphWidget(FloatLayout):
                 pos=(node[1][0], node[1][1] )))
             print(node[1][0])
 
-
-
-#    def on_touch_down(self, touch, networkMap):
-#        with self.canvas:
-#            for node in self.networkMap.layouts[0].nodesPositions:
-#                print(node[1][0])
-#                Color(1, 1, 0)
-#                d = 30.
-#                Ellipse(pos=(node[1][0] - d / 2, node[1][1] - d / 2), size=(d, d))
-
-
 class DrawGraphApp(App):
     def build(self):
         G = nx.Graph()
