@@ -31,6 +31,5 @@ class NetworkMap(object):
         else:
             self.graph = graph
         self.layouts = [ NetworkLayout(self.graph, defaultLayoutType) ]
-        self.layouts[0].explicitPositionning([[50, 50], [150, 150], [250, 250], [350, 350]])
 
 

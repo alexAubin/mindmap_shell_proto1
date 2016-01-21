@@ -24,6 +24,7 @@ class DrawGraphApp(App):
         G.add_nodes_from(["13"])
         G.add_nodes_from(["3564"])
         NM = nm.NetworkMap(G)
+        NM.layouts[0].explicitPositionning([[50, 50], [150, 150], [250, 250], [350, 350]])
         return DrawGraphWidget(NM, size=(300, 300))
 
 
